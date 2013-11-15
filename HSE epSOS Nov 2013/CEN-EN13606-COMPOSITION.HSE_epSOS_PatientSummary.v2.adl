@@ -9,8 +9,8 @@ language
 
 description
     original_author = <
-        ["name"] = <"GF">
         ["organisation"] = <"ERS B.V.">
+        ["name"] = <"GF">
         ["date"] = <"20131104">
     >
     lifecycle_state = <"Draft">
@@ -29,7 +29,7 @@ Do not use it as persitence/Query specification. This specification must be mapp
 
 definition
     COMPOSITION[at0000] occurrences matches {1..1} matches {  -- HSE epSOS_PatientSummary
-        content existence matches {0..1} cardinality matches {0..*; ordered; unique} matches {
+        content existence matches {0..1} cardinality matches {0..4; ordered; unique} matches {
             SECTION[at0001] occurrences matches {0..1} matches {  -- epSOSPatientData
                 members existence matches {0..1} cardinality matches {0..*; ordered; unique} matches {
                     SECTION[at0018] occurrences matches {0..1} matches {  -- ePDIdentification
@@ -551,7 +551,7 @@ definition
                             ELEMENT[at0138] occurrences matches {1..1} matches {  -- TargetReferenceModelClass
                                 value existence matches {0..1} matches {
                                     SIMPLE_TEXT[at0139] occurrences matches {1..1} matches {  -- TargetReferenceModelClass
-                                        originalText existence matches {0..1} matches {"Folder","Composition","Section","Entry","Cluster","Element","EHR-Extract"}
+                                        originalText existence matches {0..1} matches {"Composition"}
                                     }
                                 }
                             }
@@ -564,30 +564,34 @@ definition
                             }
                             ELEMENT[at0142] occurrences matches {1..1} matches {  -- TargetReferenceModelClassType
                                 value existence matches {0..1} matches {
-                                    SIMPLE_TEXT[at0143] occurrences matches {0..1} matches {  -- SIMPLE_TEXT
-                                        originalText existence matches {0..1} matches {/.*/}
+                                    SIMPLE_TEXT[at0143] occurrences matches {0..1} matches {  -- TargetReferenceModelClassType
+                                        originalText existence matches {0..1} matches {"Observation"}
                                     }
                                 }
                             }
                             ELEMENT[at0144] occurrences matches {1..1} matches {  -- TargetReferenceModelClassName
                                 value existence matches {0..1} matches {
                                     CODED_TEXT[at0145] occurrences matches {1..1} matches {  -- TargetReferenceModelClassType
-                                        codedValue existence matches {1..1} matches {*}
-                                        originalText existence matches {0..1} matches {"patientsummary"}
+                                        codedValue existence matches {1..1} matches {
+                                            CD[at0031] occurrences matches {1..1} matches {  -- Coded value 1
+                                                codeValue existence matches {0..1} matches {*}
+                                            }
+                                        }
+                                        originalText existence matches {0..1} matches {"patient summary"}
                                     }
                                 }
                             }
-                            ELEMENT[at0146] occurrences matches {1..1} matches {  -- RsultCollection
+                            ELEMENT[at0146] occurrences matches {1..1} matches {  -- ProcessPattern
                                 value existence matches {0..1} matches {
                                     SIMPLE_TEXT[at0147] occurrences matches {1..1} matches {  -- ProcessPattern
-                                        originalText existence matches {0..1} matches {"Order","Execute","Assess","ResultCollection","Inference"}
+                                        originalText existence matches {0..1} matches {"ResultCollection"}
                                     }
                                 }
                             }
                             ELEMENT[at0148] occurrences matches {1..1} matches {  -- ProcessContext
                                 value existence matches {0..1} matches {
                                     SIMPLE_TEXT[at0149] occurrences matches {1..1} matches {  -- ProcessContext
-                                        originalText existence matches {0..1} matches {"Diagnostic","Therapeutic","Administrative","Management","ReUse"}
+                                        originalText existence matches {0..1} matches {"ReUse"}
                                     }
                                 }
                             }
@@ -672,7 +676,7 @@ definition
     }
 
 ontology
-    terminologies_available = <"DCM", ...>
+    terminologies_available = <"DCM", "CONTSYS", ...>
     term_definitions = <
         ["en-gb"] = <
             items = <
@@ -692,7 +696,7 @@ For reference the epSOS catagories are included (0-0)">
                 >
                 ["at0003"] = <
                     text = <"ePCDAlerts">
-                    description = <"Allergie and Intolelrances">
+                    description = <"Allergie and Intollelrances">
                 >
                 ["at0004"] = <
                     text = <"ePCDHistoryOfPastIllness">
@@ -926,8 +930,12 @@ All the choices in this ToA branch of they generic semantic pattern define the s
 	•	Action">
                 >
                 ["at0143"] = <
-                    text = <"SIMPLE_TEXT">
-                    description = <"">
+                    text = <"TargetReferenceModelClassType">
+                    description = <"Codes fro the kind of artefact:
+	•	Observation
+	•	Evaluation
+	•	Instruction
+	•	Action">
                 >
                 ["at0144"] = <
                     text = <"TargetReferenceModelClassName">
@@ -940,7 +948,7 @@ All the choices in this ToA branch of they generic semantic pattern define the s
 ">
                 >
                 ["at0146"] = <
-                    text = <"RsultCollection">
+                    text = <"ProcessPattern">
                     description = <"Codes for one of the five SIAMM patterns for an ENTRY class
 
 	•	Order
@@ -1989,6 +1997,10 @@ Codes for type of user/service/etc.">
 
 Codes for type of user/service/etc.">
                 >
+                ["at0031"] = <
+                    text = <"Coded value 1">
+                    description = <"A default created CD">
+                >
             >
         >
     >
@@ -1997,12 +2009,37 @@ Codes for type of user/service/etc.">
     term_binding = <
         ["DCM"] = <
             items = <
-                ["at0013"] = <[DCM::CEN-EN13606-ENTRY.MP3F.v1]>
                 ["at0606"] = <[DCM::CEN-EN13606-CLUSTER.NOUniqueIdetifiers.v1]>
                 ["at0618"] = <[DCM::CEN-EN13606-CLUSTER.NOLODemographics.v1]>
                 ["at0652"] = <[DCM::CEN-EN13606-CLUSTER.NOPostalAddress.v1]>
                 ["at0690"] = <[DCM::CEN-EN13606-CLUSTER.NOOtherAddress.v1]>
                 ["at0706"] = <[DCM::CEN-EN13606-CLUSTER.NOUniqueIdetifiers.v1]>
+                ["at0013"] = <[DCM::CEN-EN13606-ENTRY.MP3F.v1]>
+            >
+        >
+        ["CONTSYS"] = <
+            items = <
+                ["at0000"] = <[CONTSYS::electronic patient summary]>
+                ["at0001"] = <[CONTSYS::subject of care]>
+                ["at0003"] = <[CONTSYS::health condition]>
+                ["at0011"] = <[CONTSYS::risk condition]>
+                ["at0032"] = <[CONTSYS::risk condition]>
+                ["at0004"] = <[CONTSYS::health condition]>
+                ["at0025"] = <[CONTSYS::health problem]>
+                ["at0024"] = <[CONTSYS::healthcare treatment]>
+                ["at0023"] = <[CONTSYS::healthcare treatment]>
+                ["at0027"] = <[CONTSYS::healthcare treatment]>
+                ["at0029"] = <[CONTSYS::healthcare treatment]>
+                ["at0030"] = <[CONTSYS::care plan]>
+                ["at0002"] = <[CONTSYS::observed condition]>
+                ["at0005"] = <[CONTSYS::health problem list]>
+                ["at0028"] = <[CONTSYS::observed condition]>
+                ["at0026"] = <[CONTSYS::health problem]>
+                ["at0006"] = <[CONTSYS::observed condition]>
+                ["at0007"] = <[CONTSYS::observed condition]>
+                ["at0008"] = <[CONTSYS::observed condition]>
+                ["at0009"] = <[CONTSYS::observed condition]>
+                ["at0010"] = <[CONTSYS::healthcare investigation]>
             >
         >
     >
