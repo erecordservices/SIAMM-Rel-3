@@ -9,8 +9,8 @@ language
 
 description
     original_author = <
-        ["name"] = <"GF">
         ["organisation"] = <"ERS B.V.">
+        ["name"] = <"GF">
         ["date"] = <"20130930">
     >
     lifecycle_state = <"Draft">
@@ -284,10 +284,10 @@ definition
                     }
                 }
             }
-            CLUSTER[at0010] occurrences matches {0..0} matches {  -- NOLOBiometricIdentifiers
+            CLUSTER[at0010] occurrences matches {0..1} matches {  -- NOLOBiometricIdentifiers
                 parts existence matches {0..1} cardinality matches {0..*; unordered; unique} matches {*}
                 structure_type existence matches {1..1} matches {
-                    CS[at0022] occurrences matches {1..1} matches {  -- 
+                    CS[at0015] occurrences matches {1..1} matches {  -- 
                         codeValue existence matches {0..1} matches {"STRC01"}
                         codingSchemeName existence matches {0..1} matches {"CEN/TC251/EN13606-3:STRUCTURE_TYPE"}
                     }

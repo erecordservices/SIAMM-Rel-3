@@ -1,5 +1,5 @@
 archetype (adl_version=1.4)
-    CEN-EN13606-COMPOSITION.HSE_epSOS_PatientSummary.v1
+    CEN-EN13606-COMPOSITION.HSE_epSOS_PatientSummary.v3
 
 concept
     [at0000]
@@ -17,34 +17,36 @@ description
     details = <
         ["en-gb"] = <
             language = <[ISO_639-1::en-gb]>
-            purpose = <"This COMPOSITION (TEMPLATE) defines the superstructure of th epSOS specification (2013)">
+            purpose = <"This COMPOSITION (TEMPLATE) defines the superstructure of th epSOS specification (2013) as Interface (exchange) specification">
             keywords = <"HSE","SAM","Source: epSOS D3.3.2 v0.6 29 10 2012","Subject Area Model">
             copyright = <"ERS B.V.">
-            use = <"Designed for use in the HSE National Services Framework: Information Architecture :SAM">
-            misuse = <"Outside the HSE Services Framework">
+            use = <"Designed for use in the HSE National Services Framework: Information Architecture :SAM
+To be used as the interface (exchange) specification of the epSOS data set.">
+            misuse = <"Outside the HSE Services Framework.
+Do not use it as persitence/Query specification. This specification must be mapped in order to store and retrieve the normalise infomation.">
         >
     >
 
 definition
     COMPOSITION[at0000] occurrences matches {1..1} matches {  -- HSE epSOS_PatientSummary
-        content existence matches {0..1} cardinality matches {0..*; ordered; unique} matches {
+        content existence matches {0..1} cardinality matches {0..3; ordered; unique} matches {
             SECTION[at0001] occurrences matches {0..1} matches {  -- epSOSPatientData
                 members existence matches {0..1} cardinality matches {0..*; ordered; unique} matches {
-                    SECTION[at0018] occurrences matches {0..0} matches {  -- ePDIdentification
+                    SECTION[at0018] occurrences matches {0..1} matches {  -- ePDIdentification
                         members existence matches {0..1} cardinality matches {0..*; unordered; unique} matches {*}
                     }
-                    SECTION[at0019] occurrences matches {0..0} matches {  -- ePDPersonalInformation
+                    SECTION[at0019] occurrences matches {0..1} matches {  -- ePDPersonalInformation
                         members existence matches {0..1} cardinality matches {0..*; unordered; unique} matches {*}
                     }
-                    SECTION[at0020] occurrences matches {0..0} matches {  -- ePDContactInformation
+                    SECTION[at0020] occurrences matches {0..1} matches {  -- ePDContactInformation
                         members existence matches {0..1} cardinality matches {0..*; unordered; unique} matches {*}
                     }
-                    SECTION[at0022] occurrences matches {0..0} matches {  -- ePDInsuranceInformation
+                    SECTION[at0022] occurrences matches {0..1} matches {  -- ePDInsuranceInformation
                         members existence matches {0..1} cardinality matches {0..*; unordered; unique} matches {*}
                     }
                 }
             }
-            SECTION[at0002] occurrences matches {0..1} matches {  -- epSOSPatimetClinicalData
+            SECTION[at0002] occurrences matches {0..1} matches {  -- epSOSPatientClinicalData
                 members existence matches {0..1} cardinality matches {0..*; ordered; unique} matches {
                     SECTION[at0003] occurrences matches {0..1} matches {  -- ePCDAlerts
                         members existence matches {0..1} cardinality matches {0..*; ordered; unique} matches {
@@ -107,16 +109,16 @@ definition
             }
             SECTION[at0012] occurrences matches {0..1} matches {  -- epSOSPatientSummaryData
                 members existence matches {0..1} cardinality matches {0..*; unordered; unique} matches {
-                    SECTION[at0014] occurrences matches {0..0} matches {  -- ePSDSendingCountryA
+                    SECTION[at0014] occurrences matches {0..1} matches {  -- ePSDSendingCountryA
                         members existence matches {0..1} cardinality matches {0..*; unordered; unique} matches {*}
                     }
-                    SECTION[at0015] occurrences matches {0..0} matches {  -- ePSDPatientSummary
+                    SECTION[at0015] occurrences matches {0..1} matches {  -- ePSDPatientSummary
                         members existence matches {0..1} cardinality matches {0..*; unordered; unique} matches {*}
                     }
-                    SECTION[at0016] occurrences matches {0..0} matches {  -- ePSDAuthor
+                    SECTION[at0016] occurrences matches {0..1} matches {  -- ePSDAuthor
                         members existence matches {0..1} cardinality matches {0..*; unordered; unique} matches {*}
                     }
-                    SECTION[at0017] occurrences matches {0..0} matches {  -- ePSDLegalEntity
+                    SECTION[at0017] occurrences matches {0..1} matches {  -- ePSDLegalEntity
                         members existence matches {0..1} cardinality matches {0..*; unordered; unique} matches {*}
                     }
                 }
@@ -125,6 +127,7 @@ definition
     }
 
 ontology
+    terminologies_available = <"CONTSYS", ...>
     term_definitions = <
         ["en-gb"] = <
             items = <
@@ -139,7 +142,7 @@ ontology
 For reference the epSOS catagories are included (0-0)">
                 >
                 ["at0002"] = <
-                    text = <"epSOSPatimetClinicalData">
+                    text = <"epSOSPatientClinicalData">
                     description = <"">
                 >
                 ["at0003"] = <
@@ -167,7 +170,7 @@ Active Ingerdient, Active ingredient code, Strength, Pharmaceutical Dose form, N
                     text = <"ePCSSocialHistory">
                     description = <"PM; ENTRY SocialHistoryObservations
 
-Social histiry Observations( realted to Smoking, Alcohol, Diet), Refernce data range">
+Social history Observations( realted to Smoking, Alcohol, Diet), Reference data range">
                 >
                 ["at0008"] = <
                     text = <"ePCDPregnancyHistory">
@@ -294,6 +297,12 @@ Recommendation description, Recommendation It">
     constraint_definitions = <
     >
     term_binding = <
+        ["CONTSYS"] = <
+            items = <
+                ["at0000"] = <[CONTSYS::PatientSummary]>
+                ["at0001"] = <[CONTSYS::SubjectOfCare]>
+            >
+        >
     >
     constraint_binding = <
     >
