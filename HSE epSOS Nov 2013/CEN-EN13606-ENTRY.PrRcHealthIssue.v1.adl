@@ -369,7 +369,7 @@ definition
                             }
                         }
                         structure_type existence matches {1..1} matches {
-                            CS[at0099] occurrences matches {1..1} matches {  -- 
+                            CS[at0039] occurrences matches {1..1} matches {  -- 
                                 codeValue existence matches {0..1} matches {"STRC01"}
                                 codingSchemeName existence matches {0..1} matches {"CEN/TC251/EN13606-3:STRUCTURE_TYPE"}
                             }
@@ -2258,7 +2258,7 @@ definition
                             }
                         }
                         structure_type existence matches {1..1} matches {
-                            CS[at0590] occurrences matches {1..1} matches {  -- 
+                            CS[at0202] occurrences matches {1..1} matches {  -- 
                                 codeValue existence matches {0..1} matches {"STRC01"}
                                 codingSchemeName existence matches {0..1} matches {"CEN/TC251/EN13606-3:STRUCTURE_TYPE"}
                             }
@@ -2291,11 +2291,16 @@ definition
                         }
                     }
                     ELEMENT[at0034] occurrences matches {0..1} matches {  -- MediumUsed
-                        value existence matches {0..1} matches {*}
+                        value existence matches {0..1} matches {
+                            CODED_TEXT[at0004] occurrences matches {0..1} matches {  -- MediumUsed
+                                codedValue existence matches {1..1} matches {*}
+                                originalText existence matches {0..1} matches {/.*/}
+                            }
+                        }
                     }
                 }
                 structure_type existence matches {1..1} matches {
-                    CS[at0131] occurrences matches {1..1} matches {  -- 
+                    CS[at0183] occurrences matches {1..1} matches {  -- 
                         codeValue existence matches {0..1} matches {"STRC01"}
                         codingSchemeName existence matches {0..1} matches {"CEN/TC251/EN13606-3:STRUCTURE_TYPE"}
                     }
@@ -6250,10 +6255,6 @@ Using an Archetype SLOT
                     text = <"">
                     description = <"">
                 >
-                ["at0590"] = <
-                    text = <"">
-                    description = <"">
-                >
                 ["at0591"] = <
                     text = <"LISVirtual">
                     description = <"Coding for virtual place in space.
@@ -6427,6 +6428,10 @@ Allowed     P - Present (default)
                 ["at0600"] = <
                     text = <"SCPPAComment">
                     description = <"">
+                >
+                ["at0004"] = <
+                    text = <"MediumUsed">
+                    description = <"When digitally: define the Medium Used (e-mail, etc.)">
                 >
             >
         >

@@ -1,0 +1,169 @@
+archetype (adl_version=1.4)
+    CEN-EN13606-COMPOSITION.HSE_DEmo.v1
+
+concept
+    [at0000]
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"GF">
+        ["organisation"] = <"ERS B.V.">
+        ["date"] = <"20131127">
+    >
+    lifecycle_state = <"Draft">
+    details = <
+        ["en-gb"] = <
+            language = <[ISO_639-1::en-gb]>
+        >
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"Demo HSE">
+            keywords = <"HSE","DEMO">
+            copyright = <"ERS B.V.">
+            use = <"Demo HSE">
+        >
+    >
+
+definition
+    COMPOSITION[at0000] occurrences matches {1..1} matches {  -- Summary
+        content existence matches {0..1} cardinality matches {0..3; unordered; unique} matches {
+            SECTION[at0001] occurrences matches {0..1} matches {  -- Context
+                members existence matches {0..1} cardinality matches {0..2; unordered; unique} matches {
+                    SECTION[at0002] occurrences matches {0..1} matches {  -- WHERE
+                        members existence matches {0..1} cardinality matches {0..*; unordered; unique} matches {
+                            ENTRY[at0003] occurrences matches {0..1} matches {  -- Location
+                                items existence matches {0..1} cardinality matches {0..1; unordered} matches {*}
+                            }
+                            ENTRY[at0008] occurrences matches {0..1} matches {  -- Time
+                                items existence matches {0..1} cardinality matches {0..*; unordered; unique} matches {*}
+                            }
+                        }
+                    }
+                    SECTION[at0007] occurrences matches {0..*} matches {  -- WHO
+                        members existence matches {0..1} cardinality matches {0..*; unordered} matches {*}
+                    }
+                }
+            }
+            SECTION[at0004] occurrences matches {0..1} matches {  -- WHAT:ProblemList
+                members existence matches {0..1} cardinality matches {0..*; unordered} matches {
+                    allow_archetype ENTRY[at0010] occurrences matches {0..*} matches {  -- HealthConditions
+                        include
+                            archetype_id/value matches {/.Diagnosis/}
+                            archetype_id/value matches {/.Complaints/}
+                            archetype_id/value matches {/.Findings/}
+                    }
+                }
+            }
+            ENTRY[at0005] occurrences matches {1..1} matches {  -- Author
+                items existence matches {0..1} cardinality matches {0..*; unordered} matches {*}
+            }
+        }
+    }
+
+ontology
+    terminologies_available = <"CONTSYS", "epSOS", "LOCAL", ...>
+    term_definitions = <
+        ["en-gb"] = <
+            items = <
+                ["at0000"] = <
+                    text = <"HSE_DEmo">
+                    description = <"HSE_DEmo">
+                >
+                ["at0001"] = <
+                    text = <"WHERE">
+                    description = <"">
+                >
+                ["at0002"] = <
+                    text = <"SECTION">
+                    description = <"">
+                >
+                ["at0003"] = <
+                    text = <"Time">
+                    description = <"">
+                >
+                ["at0004"] = <
+                    text = <"ProblemList">
+                    description = <"">
+                >
+                ["at0005"] = <
+                    text = <"Author">
+                    description = <"">
+                >
+                ["at0008"] = <
+                    text = <"Location">
+                    description = <"">
+                >
+                ["at0010"] = <
+                    text = <"ENTRY">
+                    description = <"">
+                >
+            >
+        >
+        ["en"] = <
+            items = <
+                ["at0000"] = <
+                    text = <"Summary">
+                    description = <"">
+                >
+                ["at0005"] = <
+                    text = <"Author">
+                    description = <"">
+                >
+                ["at0002"] = <
+                    text = <"WHERE">
+                    description = <"">
+                >
+                ["at0001"] = <
+                    text = <"Context">
+                    description = <"">
+                >
+                ["at0007"] = <
+                    text = <"WHO">
+                    description = <"">
+                >
+                ["at0004"] = <
+                    text = <"WHAT:ProblemList">
+                    description = <"">
+                >
+                ["at0008"] = <
+                    text = <"Time">
+                    description = <"">
+                >
+                ["at0003"] = <
+                    text = <"Location">
+                    description = <"">
+                >
+                ["at0010"] = <
+                    text = <"HealthConditions">
+                    description = <"">
+                >
+            >
+        >
+    >
+    constraint_definitions = <
+    >
+    term_binding = <
+        ["CONTSYS"] = <
+            items = <
+                ["at0010"] = <[CONTSYS::HealtCondition]>
+                ["at0000"] = <[CONTSYS::PatientSummary]>
+                ["at0004"] = <[CONTSYS::HealthProblemList]>
+                ["at0005"] = <[CONTSYS::HealthCareProvider]>
+            >
+        >
+        ["epSOS"] = <
+            items = <
+                ["at0005"] = <[epSOS::1.2.3.4.5.6.7777]>
+            >
+        >
+        ["LOCAL"] = <
+            items = <
+                ["at0005"] = <[LOCAL::A8456QW]>
+            >
+        >
+    >
+    constraint_binding = <
+    >

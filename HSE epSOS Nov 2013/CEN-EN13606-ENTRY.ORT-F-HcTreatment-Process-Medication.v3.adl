@@ -9,8 +9,8 @@ language
 
 description
     original_author = <
-        ["name"] = <"GF">
         ["organisation"] = <"ERS">
+        ["name"] = <"GF">
         ["date"] = <"2012-09-12">
     >
     lifecycle_state = <"Draft">
